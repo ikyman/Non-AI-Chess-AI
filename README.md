@@ -27,22 +27,4 @@ I could have explained it to you back when I was in middle school! (Editor's not
 
 That, or arbritrarily bump up the canon skill level within *redacted*
 
-# AI's strategy
-# Castling? Wuzzat?
-   I personally like castling. I get to hole up in my cozy castle. I can drink hot cocoa and lie snugly in bed while war rages outside.
-   That, and castling instantly moves one of your powerful rook peices from "locked away in a corner" mode to "Ready for a-killing!" mode.
-   The AI will not castle. As stated before, even when accounting for general laziness and easy being better, I want it to be easy to make this app.
-
-
-2. How the AI works: Each peice has their own value: Pawns 1, Knight & Bishops 3, Rooks 5, Queens 8, and Kings... We'll get to the kings.
-3. Castling? Wuzzat?
-   I am
-
-
-  The AI only does 4 things: Map control, Pawns forward, KD/Ratio, and Checking.
-Map Control: all thing
-   
-
-
-
 Considering the super-secret reasoning behind making this Not-an-AI, I could alternitively just make an AI call to Chat GPT. That requires an account, though. Boo! 
