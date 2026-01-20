@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import ChessBoard.Coordinate;
 import main.ChessColour;
 
 // indexing starts at 1; In programming, this is odd, but indexing starting at 0 is non-existant in chessworld.
@@ -25,6 +24,17 @@ public class ChessBoard {
 	
 	public ChessBoard(int x_size, int y_size) {
 		createChessBoard(x_size, y_size);
+	}
+	
+	public boolean InBounds(Coordinate point){
+		if (point.x <= 0 || point.y <= 0){
+			return false;
+		} 
+		if (point.x > this.x_size || point.y > this.y_size){
+			return false;
+		} 
+		
+		return true;
 	}
 	
 	public double DistanceFromCentre(Coordinate point) {
