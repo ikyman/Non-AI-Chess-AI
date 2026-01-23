@@ -1,9 +1,12 @@
 package ChessBoard;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+import chessPieces.ChessPiece;
 import main.ChessColour;
 
 // indexing starts at 1; In programming, this is odd, but indexing starting at 0 is non-existant in chessworld.
@@ -12,6 +15,8 @@ public class ChessBoard {
 	static final float MAX_POSITION_VALUE = 5;
 	int x_size;
 	int y_size;
+	
+	private Map<Coordinate, ChessPiece> BoardPeices = new HashMap<Coordinate, ChessPiece>();
 	
 	public ChessBoard() {
 		createChessBoard(8,8);

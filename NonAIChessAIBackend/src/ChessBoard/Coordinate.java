@@ -18,6 +18,25 @@ public class Coordinate {
 
 	public Coordinate add(Coordinate other) {
 		return new Coordinate(this.x+other.x, this.y+other.y);
+	}
+	
+	@Override
+	public boolean equals(Object objOther) {
+		if (!(objOther instanceof Coordinate)){
+			return false;
+		}
+		if ( (this==null && objOther !=null) || (this!=null && objOther ==null)) {
+			return false;
+		}
+		Coordinate other = (Coordinate) objOther;
 
+		return this.x == other.x && this.y == other.y;
+	}
+	
+	@Override
+	public int hashCode() {
+		// https://stackoverflow.com/questions/22826326/good-hashcode-function-for-2d-coordinates
+		int tmp = ( this.y +  ((this.x+1)/2));
+        return this.x +  ( tmp * tmp);
 	}
 }
