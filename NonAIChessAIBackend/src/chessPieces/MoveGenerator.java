@@ -29,12 +29,30 @@ public class MoveGenerator {
 		
 		Coordinate current_location = piece_location;
 		Coordinate next_location = current_location.add(moveBy);
-		
-		
+
+		while (!this.moveBlocked(next_location, current_board, player_colour)){
+			available_moves.add(next_location);
+			if (!recursive) {
+				break;
+			}
+			current_location = next_location;
+			next_location = current_location.add(moveBy);
+		}
 		return available_moves;
 	}
 	
-	private boolean moveBlocked(Coordinate move, ChessBoard current_board){
-		//ChessPiece occupant = current_board.PeiceAt
+	private boolean moveBlocked(Coordinate move, ChessBoard current_board, ChessColour move_colour){
+		if (! current_board.InBounds(move)){
+			return false;
+		} 
+		ChessPiece occupant = current_board.PieceAt(move);
+		if (occupant == null) {
+			return  this.captureBehavior != CaptureBehavior.mandatoryCapture;
+		}
+		if (occupant.getTeamColour() == move_colour){
+				return false;
+		}
+		return this.captureBehavior != CaptureBehavior.cannotCapture;
+		
 	}
 }
