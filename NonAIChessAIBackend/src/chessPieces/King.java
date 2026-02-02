@@ -1,4 +1,4 @@
 package chessPieces;
 
-public class King implements ChessPiece {
+public class King extends ChessPiece {
 }
