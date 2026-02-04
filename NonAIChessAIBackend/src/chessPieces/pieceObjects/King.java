@@ -1,4 +1,4 @@
-package chessPieces;
+package pieceObjects;
 
 public class King extends ChessPiece {
 }

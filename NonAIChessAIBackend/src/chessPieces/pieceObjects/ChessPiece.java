@@ -1,10 +1,12 @@
-package chessPieces;
+package pieceObjects;
 import java.util.HashSet;
 import java.util.Set;
 
 import ChessBoard.ChessBoard;
 import ChessBoard.Coordinate;
 import main.ChessColour;
+import pieceMovement.ChessMove;
+import pieceMovement.MoveGenerator;
 
 public abstract class ChessPiece {
 	protected ChessColour teamColour;
@@ -13,8 +15,8 @@ public abstract class ChessPiece {
 	public ChessColour getTeamColour() {
 		return this.teamColour;
 	}
-	Set<Coordinate> getMoves(Coordinate piece_location, ChessBoard current_board){
-		Set<Coordinate> available_moves = new HashSet<Coordinate>();
+	public Set<ChessMove> getMoves(Coordinate piece_location, ChessBoard current_board){
+		Set<ChessMove> available_moves = new HashSet<ChessMove>();
 		for (MoveGenerator mg: pieceMoves) {
 			available_moves.addAll(mg.MoveGenerate(piece_location, current_board, this.getTeamColour()));
 		} 

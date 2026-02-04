@@ -1,4 +1,4 @@
-package chessPieces;
+package pieceMovement;
 
 import java.util.HashSet;
 import java.util.Set;
