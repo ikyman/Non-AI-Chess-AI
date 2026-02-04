@@ -7,12 +7,6 @@ import ChessBoard.ChessBoard;
 import ChessBoard.Coordinate;
 import main.ChessColour;
 
-enum CaptureBehavior{
-	cannotCapture,
-	optionalCapture,
-	mandatoryCapture,
-}
-
 public class MoveGenerator {
 	private Coordinate moveBy;
 	private boolean recursive;
