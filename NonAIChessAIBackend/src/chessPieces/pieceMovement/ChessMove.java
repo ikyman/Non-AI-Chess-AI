@@ -2,6 +2,7 @@ package pieceMovement;
 
 import ChessBoard.ChessBoard;
 import ChessBoard.Coordinate;
+import moveFunctions.moveValidityChecker;
 
 public class ChessMove {
 	private Coordinate move_from;
@@ -19,7 +20,7 @@ public class ChessMove {
 	}
 	
 	public boolean isMoveValid() {
-		return this.moveValidFunc.isMoveValid(this, this.current_board);
+		return this.moveValidFunc.isMoveValid(this);
 	}
 	
 	public ChessBoard makeMove(){
@@ -29,6 +30,18 @@ public class ChessMove {
 		return this.current_board;
 	}
 	
+	public Coordinate getMove_from() {
+		return move_from;
+	}
+
+	public Coordinate getMove_to() {
+		return move_to;
+	}
+
+	public ChessBoard getCurrent_board() {
+		return current_board;
+	}
+
 	@Override
 	public boolean equals(Object objOther) {
 		if (!(objOther instanceof ChessMove)){

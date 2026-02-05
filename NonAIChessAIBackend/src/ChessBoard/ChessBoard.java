@@ -6,15 +6,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import chessPieces.ChessPiece;
 import main.ChessColour;
+import pieceObjects.ChessPiece;
 
 // indexing starts at 1; In programming, this is odd, but indexing starting at 0 is non-existant in chessworld.
 public class ChessBoard {
-	static final float MIN_POSITION_VALUE = 1;
-	static final float MAX_POSITION_VALUE = 5;
-	int x_size;
-	int y_size;
+	private int x_size;
+	private int y_size;
 	
 	private Map<Coordinate, ChessPiece> BoardPeices = new HashMap<Coordinate, ChessPiece>();
 	
@@ -56,19 +54,28 @@ public class ChessBoard {
 	
 	Set<Coordinate> dangerZone(ChessColour colourInDanger){
 		Set<Coordinate> danger_coords = new HashSet<Coordinate>();
-		
 		for (ChessColour player : ChessColour.values() ) {
 			if (player == colourInDanger){
 				continue;
 			}
+			Set<> player_ZOC = this.getMovesForColour(player);
+			
 		}
-		
 		return danger_coords;
 	}
 		
-	Set<Coordinate> getMovesForColour(ChessColour colour){
-		
+	public Set<Coordinate> getMovesForColour(ChessColour colour){
 		throw new RuntimeException("Not Yet Implemented!");
+		Set<ChessMove> all_moves = new HashSet<>();
+		for (Map.Entry<Coordinate, ChessPiece> cp:  BoardPeices.entrySet()) {
+			Set<ChessMove> pieceZOC = cp.getValue().getMoves(cp.getKey(), this);
+			all_moves += pieceZOC;
+		}	
+		return all_moves;
+	}
+
+	public ChessPiece PieceAt(Coordinate coord) {
+		return BoardPeices.get(coord);
 	}
 	
 	
