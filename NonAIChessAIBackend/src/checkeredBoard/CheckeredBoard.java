@@ -19,16 +19,16 @@ public class CheckeredBoard {
 	private Map<Point, ChessPiece> BoardPeices = new HashMap<Point, ChessPiece>();
 	
 	public CheckeredBoard() {
-		createChessBoard(8,8);
+		createCheckeredBoard(8,8);
 	}
 	
 	public CheckeredBoard(int size) {
-		createChessBoard(size,size);
+		createCheckeredBoard(size,size);
 		
 	}
 	
 	public CheckeredBoard(int x_size, int y_size) {
-		createChessBoard(x_size, y_size);
+		createCheckeredBoard(x_size, y_size);
 	}
 	
 	public boolean InBounds(Point point){
@@ -49,7 +49,7 @@ public class CheckeredBoard {
 		return point.distance(center_x, center_y);
 	}
 	
-	private void createChessBoard(int x_size, int y_size) {
+	private void createCheckeredBoard(int x_size, int y_size) {
 		this.x_size = x_size;
 		this.y_size = y_size;
 	}
@@ -60,18 +60,19 @@ public class CheckeredBoard {
 			if (player == colourInDanger){
 				continue;
 			}
-			Set<> player_ZOC = this.getMovesForColour(player);
-			
+			Set<ChessMove> player_ZOC = this.getMovesForColour(player);
+			for (ChessMove possible_move : player_ZOC ) {
+				danger_coords.add(possible_move.getMove_to());
+			} 
 		}
 		return danger_coords;
 	}
 		
-	public Set<Point> getMovesForColour(ChessColour colour){
-		throw new RuntimeException("Not Yet Implemented!");
+	public Set<ChessMove> getMovesForColour(ChessColour colour){
 		Set<ChessMove> all_moves = new HashSet<>();
 		for (Map.Entry<Point, ChessPiece> cp:  BoardPeices.entrySet()) {
 			Set<ChessMove> pieceZOC = cp.getValue().getMoves(cp.getKey(), this);
-			all_moves += pieceZOC;
+			all_moves.addAll(pieceZOC);
 		}	
 		return all_moves;
 	}
@@ -79,6 +80,4 @@ public class CheckeredBoard {
 	public ChessPiece PieceAt(Point coord) {
 		return BoardPeices.get(coord);
 	}
-	
-	
 }
