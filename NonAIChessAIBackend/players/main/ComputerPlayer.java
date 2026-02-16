@@ -4,11 +4,10 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 import checkeredBoard.ChessBoard;
-import checkeredBoard.Coordinate;
 import pieceObjects.ChessPiece;
 import pieceObjects.King;
 
-public class ComputerPlayer {
+public class ComputerPlayer implements Player{
 	/*static final float MIN_POSITION_VALUE = 1;
 	static final float MAX_POSITION_VALUE = 5;*/
 
