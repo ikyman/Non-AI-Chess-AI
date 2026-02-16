@@ -1,26 +1,25 @@
 package pieceMovement;
 
-import ChessBoard.ChessBoard;
-import ChessBoard.Coordinate;
-import moveFunctions.moveValidityChecker;
+import java.awt.Point;
+
+import checkeredBoard.ChessBoard;
+import moveFunctions.moveBehavior;
 
 public class ChessMove {
-	private Coordinate move_from;
-	private Coordinate move_to;
+	private Point move_from;
+	private Point move_to;
 	private ChessBoard current_board;
-	private moveValidityChecker moveValidFunc;
-	private void onMoveFunc;
+	private moveBehavior move_effect;
 	
-	public ChessMove(Coordinate move_from, Coordinate move_to, ChessBoard current_board, moveValidityChecker moveValidFunc, void onMoveFunc) {
+	public ChessMove(Point move_from, Point move_to, ChessBoard current_board, moveBehavior move_effect) {
 		this.move_from = move_from;
 		this.move_to = move_to;
 		this.current_board = current_board;
-		this.moveValidFunc = moveValidFunc;
-		this.onMoveFunc = onMoveFunc;
+		this.move_effect = move_effect;
 	}
 	
 	public boolean isMoveValid() {
-		return this.moveValidFunc.isMoveValid(this);
+		return this.move_effect.isMoveValid(this);
 	}
 	
 	public ChessBoard makeMove(){
@@ -30,11 +29,11 @@ public class ChessMove {
 		return this.current_board;
 	}
 	
-	public Coordinate getMove_from() {
+	public Point getMove_from() {
 		return move_from;
 	}
 
-	public Coordinate getMove_to() {
+	public Point getMove_to() {
 		return move_to;
 	}
 
@@ -54,8 +53,7 @@ public class ChessMove {
 
 		return (this.move_from == other.move_from) &&
 				(this.move_to == other.move_to) &&
-				(this.moveValidFunc == other.moveValidFunc) &&
-				(this.onMoveFunc == other.onMoveFunc);
+				(this.move_effect == other.move_effect);
 	}
 	
 	@Override

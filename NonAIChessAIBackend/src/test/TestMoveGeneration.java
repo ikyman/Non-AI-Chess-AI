@@ -14,6 +14,8 @@ import pieceMovement.ChessMove;
 import pieceObjects.ChessPiece;
 
 public class TestMoveGeneration {
+	/* TODO: I foresee it quite likely that I fail to add "This point IS NOT within the possible moves of a piece"
+	 Not Good: Where a missile is not is about as important as where the missile is. */
 	@Test 
 	void testNoMovesAvailable() {
         CheckeredBoard board = new CheckeredBoard(3);
