@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import main.ChessColour;
+import main.GameColour;
 import pieceMovement.ChessMove;
 import pieceObjects.ChessPiece;
 
@@ -54,9 +54,9 @@ public class CheckeredBoard {
 		this.y_size = y_size;
 	}
 	
-	Set<Point> dangerZone(ChessColour colourInDanger){
+	Set<Point> dangerZone(GameColour colourInDanger){
 		Set<Point> danger_coords = new HashSet<Point>();
-		for (ChessColour player : ChessColour.values() ) {
+		for (GameColour player : GameColour.values() ) {
 			if (player == colourInDanger){
 				continue;
 			}
@@ -68,7 +68,7 @@ public class CheckeredBoard {
 		return danger_coords;
 	}
 		
-	public Set<ChessMove> getMovesForColour(ChessColour colour){
+	public Set<ChessMove> getMovesForColour(GameColour colour){
 		Set<ChessMove> all_moves = new HashSet<>();
 		for (Map.Entry<Point, ChessPiece> cp:  BoardPeices.entrySet()) {
 			Set<ChessMove> pieceZOC = cp.getValue().getMoves(cp.getKey(), this);

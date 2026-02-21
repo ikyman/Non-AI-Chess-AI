@@ -2,13 +2,12 @@ package checkeredBoard;
 
 import java.awt.Point;
 
-import main.ChessColour;
+import main.GameColour;
 import pieceObjects.ChessPiece;
 import pieceObjects.King;
 
 public class ChessBoard extends CheckeredBoard {
-	public Point getKingLocation(ChessColour kingColour) throws RuntimeException {
-		Point FoundKing = null;
+	public Point getKingLocation(GameColour kingColour) throws RuntimeException {
 		for (int x = 1; x < this.x_size; x++) {
 			for (int y = 1; y < this.y_size; y++) {
 				Point coord = new Point(x,y);
