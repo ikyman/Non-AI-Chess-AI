@@ -10,13 +10,14 @@ import java.util.Set;
 import main.GameColour;
 import pieceMovement.ChessMove;
 import pieceObjects.ChessPiece;
+import pieceObjects.GamePiece;
 
 // indexing starts at 1; In programming, this is odd, but indexing starting at 0 is non-existant in chessworld.
 public class CheckeredBoard {
 	protected int x_size;
 	protected int y_size;
 	
-	private Map<Point, ChessPiece> BoardPeices = new HashMap<Point, ChessPiece>();
+	private Map<Point, GamePiece> BoardPeices = new HashMap<Point, GamePiece>();
 	
 	public CheckeredBoard() {
 		createCheckeredBoard(8,8);
@@ -68,16 +69,16 @@ public class CheckeredBoard {
 		return danger_coords;
 	}
 		
-	public Set<ChessMove> getMovesForColour(GameColour colour){
-		Set<ChessMove> all_moves = new HashSet<>();
-		for (Map.Entry<Point, ChessPiece> cp:  BoardPeices.entrySet()) {
-			Set<ChessMove> pieceZOC = cp.getValue().getMoves(cp.getKey(), this);
+	public Set<PieceMove> getMovesForColour(GameColour colour){
+		Set<PieceMove> all_moves = new HashSet<>();
+		for (Map.Entry<Point, GamePiece> cp:  BoardPeices.entrySet()) {
+			Set<PieceMove> pieceZOC = cp.getValue().getMoves(cp.getKey(), this);
 			all_moves.addAll(pieceZOC);
 		}	
 		return all_moves;
 	}
 
-	public ChessPiece PieceAt(Point coord) {
+	public GamePiece PieceAt(Point coord) {
 		return BoardPeices.get(coord);
 	}
 }

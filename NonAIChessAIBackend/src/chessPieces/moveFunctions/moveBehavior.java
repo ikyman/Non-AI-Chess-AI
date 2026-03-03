@@ -1,8 +1,8 @@
 package moveFunctions;
 
-import pieceMovement.ChessMove;
+import pieceMovement.PieceMove;
 
 public interface moveBehavior {
-	public boolean isMoveValid( ChessMove proposedMove);
-	public void moveEffect(ChessMove proposedMove);
+	public boolean isMoveValid( PieceMove proposedMove);
+	public void moveEffect(PieceMove proposedMove);
 }
