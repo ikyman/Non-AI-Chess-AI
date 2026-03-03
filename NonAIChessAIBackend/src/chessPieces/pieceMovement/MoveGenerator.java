@@ -5,33 +5,32 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import checkeredBoard.ChessBoard;
-import checkeredBoard.Coordinate;
-import main.ChessColour;
+import checkeredBoard.CheckeredBoard;
 import moveFunctions.moveBehavior;
+import moveFunctions.recurseIf;
 
 public class MoveGenerator {
 	private Set<Point> steps;
 	private moveBehavior mb;
-	private void recurseIf;
+	private recurseIf ri;
 	
-	public MoveGenerator(Set<Point> steps, moveBehavior mb,  void recurseIf  ){
+	public MoveGenerator(Set<Point> steps, moveBehavior mb, recurseIf ri  ){
 		this.steps = steps;
 		this.mb = mb;
-		this.recurseIf = recurseIf;
+		this.ri = ri;
 	}
 	
-	public Set<ChessMove> MoveGenerate(Point piece_location, ChessBoard current_board, Optional<Point> last_point){
-		HashSet<ChessMove> available_moves= new HashSet<ChessMove>();
+	public Set<PieceMove> MoveGenerate(Point piece_location, CheckeredBoard current_board, Optional<Point> last_point){
+		HashSet<PieceMove> available_moves= new HashSet<PieceMove>();
 		
 		for (Point step: this.steps) {
-			Point new_loc = PointAddition.addPoints( piece_location,  step;);
+			Point new_loc = PointAddition.addPoints( piece_location,  step);
 			if (last_point.isPresent() && new_loc == last_point.get() ) {
 				continue;
 			}
-			ChessMove newMove = new ChessMove(piece_location, new_loc, current_board, this.mb);
+			PieceMove newMove = new PieceMove(piece_location, new_loc, current_board, this.mb);
 
-			if (recurseIf.canRecurse(newMove) ) {
+			if (this.ri.canRecurse(newMove) ) {
 				available_moves.addAll( this.MoveGenerate(new_loc, current_board, Optional.of(piece_location) ) );
 			}
 			
