@@ -4,20 +4,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 import checkeredBoard.CheckeredBoard;
-import checkeredBoard.ChessBoard;
 import main.GameColour;
-import pieceMovement.ChessMove;
 import pieceMovement.MoveGenerator;
+import pieceMovement.PieceMove;
 
-public abstract class ChessPiece {
+public abstract class GamePiece {
 	protected GameColour teamColour;
 	protected Set<MoveGenerator> pieceMoves; 
 
 	public GameColour getTeamColour() {
 		return this.teamColour;
 	}
-	public Set<ChessMove> getMoves(Point piece_location, ChessBoard current_board){
-		Set<ChessMove> available_moves = new HashSet<ChessMove>();
+	public Set<PieceMove> getMoves(Point piece_location, CheckeredBoard current_board){
+		Set<PieceMove> available_moves = new HashSet<PieceMove>();
 		for (MoveGenerator mg: pieceMoves) {
 			available_moves.addAll(mg.MoveGenerate(piece_location, current_board, null));
 		} 
