@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import checkeredBoard.CheckeredBoard;
+import main.GameColour;
 import pieceMovement.MoveGenerator;
 import pieceMovement.PieceMove;
 
@@ -16,7 +17,8 @@ enum VirginityStatus{
 public abstract class VirginityPiece extends GamePiece{
 	private VirginityStatus virginity;
 	
-	public VirginityPiece() {
+	public VirginityPiece(GameColour teamColour, int pieceScore) {
+		super(teamColour, pieceScore);
 		this.virginity = VirginityStatus.hasntMoved;
 	}
 

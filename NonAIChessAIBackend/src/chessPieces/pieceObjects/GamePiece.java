@@ -10,7 +10,13 @@ import pieceMovement.PieceMove;
 
 public abstract class GamePiece {
 	protected GameColour teamColour;
-	protected Set<MoveGenerator> pieceMoves; 
+	protected Set<MoveGenerator> pieceMoves;
+	protected int pieceScore;
+	
+	protected GamePiece(GameColour teamColour, int pieceScore) {
+		this.teamColour = teamColour;
+		this.pieceScore = pieceScore;
+	}
 
 	public GameColour getTeamColour() {
 		return this.teamColour;
@@ -21,6 +27,10 @@ public abstract class GamePiece {
 			available_moves.addAll(mg.MoveGenerate(piece_location, current_board, null));
 		} 
 		return available_moves;
+	}
+	
+	public int getScore() {
+		return pieceScore;
 	}
 	
 	protected void addMoveGenerator(MoveGenerator mg){
