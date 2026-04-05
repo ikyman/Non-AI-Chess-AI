@@ -8,8 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import main.GameColour;
-import pieceMovement.ChessMove;
-import pieceObjects.ChessPiece;
+import pieceMovement.PieceMove;
 import pieceObjects.GamePiece;
 
 // indexing starts at 1; In programming, this is odd, but indexing starting at 0 is non-existant in chessworld.
@@ -61,8 +60,8 @@ public class CheckeredBoard {
 			if (player == colourInDanger){
 				continue;
 			}
-			Set<ChessMove> player_ZOC = this.getMovesForColour(player);
-			for (ChessMove possible_move : player_ZOC ) {
+			Set<PieceMove> player_ZOC = this.getMovesForColour(player);
+			for (PieceMove possible_move : player_ZOC ) {
 				danger_coords.add(possible_move.getMove_to());
 			} 
 		}
@@ -72,6 +71,9 @@ public class CheckeredBoard {
 	public Set<PieceMove> getMovesForColour(GameColour colour){
 		Set<PieceMove> all_moves = new HashSet<>();
 		for (Map.Entry<Point, GamePiece> cp:  BoardPeices.entrySet()) {
+			if (cp.getValue().getTeamColour() != colour) {
+				continue;
+			}
 			Set<PieceMove> pieceZOC = cp.getValue().getMoves(cp.getKey(), this);
 			all_moves.addAll(pieceZOC);
 		}	
@@ -80,5 +82,19 @@ public class CheckeredBoard {
 
 	public GamePiece PieceAt(Point coord) {
 		return BoardPeices.get(coord);
+	}
+	
+	/* @Returns the sum of all the peice scores for every peice belonging to the player with color colour. 
+	 * 
+	 * */
+	public int PlayersPieceScore(GameColour colour) {
+		int pieceScoreSum = 0;
+		for (Map.Entry<Point, GamePiece> cp:  BoardPeices.entrySet()) {
+			if (cp.getValue().getTeamColour() != colour) {
+				continue;
+			}
+			pieceScoreSum += cp.getValue().getScore();
+		}
+		return pieceScoreSum;
 	}
 }

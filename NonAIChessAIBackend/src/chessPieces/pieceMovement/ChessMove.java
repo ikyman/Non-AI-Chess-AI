@@ -5,17 +5,14 @@ import java.awt.Point;
 import checkeredBoard.ChessBoard;
 import moveFunctions.moveBehavior;
 
-public class ChessMove {
+public class ChessMove extends PieceMove {
 	private Point move_from;
 	private Point move_to;
 	private ChessBoard current_board;
 	private moveBehavior move_effect;
 	
 	public ChessMove(Point move_from, Point move_to, ChessBoard current_board, moveBehavior move_effect) {
-		this.move_from = move_from;
-		this.move_to = move_to;
-		this.current_board = current_board;
-		this.move_effect = move_effect;
+		super(move_from, move_to, current_board, move_effect);
 	}
 	
 	public boolean isMoveValid() {

@@ -3,7 +3,6 @@ package checkeredBoard;
 import java.awt.Point;
 
 import main.GameColour;
-import pieceObjects.ChessPiece;
 import pieceObjects.GamePiece;
 import pieceObjects.King;
 
