@@ -1,9 +1,9 @@
 package pieceMovement;
 
 import java.awt.Point;
+import java.util.Set;
 
 import checkeredBoard.CheckeredBoard;
-import checkeredBoard.ChessBoard;
 import moveFunctions.moveBehavior;
 
 public class PieceMove {
@@ -41,7 +41,7 @@ public class PieceMove {
 	public CheckeredBoard getCurrent_board() {
 		return current_board;
 	}
-
+	
 	@Override
 	public boolean equals(Object objOther) {
 		if (!(objOther instanceof PieceMove)){

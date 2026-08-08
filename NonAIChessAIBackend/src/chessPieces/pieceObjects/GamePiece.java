@@ -24,7 +24,7 @@ public abstract class GamePiece {
 	public Set<PieceMove> getMoves(Point piece_location, CheckeredBoard current_board){
 		Set<PieceMove> available_moves = new HashSet<PieceMove>();
 		for (MoveGenerator mg: pieceMoves) {
-			available_moves.addAll(mg.MoveGenerate(piece_location, current_board, null));
+			available_moves.addAll(mg.MoveGenerate(piece_location, current_board));
 		} 
 		return available_moves;
 	}

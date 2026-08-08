@@ -15,10 +15,6 @@ public class ChessMove extends PieceMove {
 		super(move_from, move_to, current_board, move_effect);
 	}
 	
-	public boolean isMoveValid() {
-		return this.move_effect.isMoveValid(this);
-	}
-	
 	public ChessBoard makeMove(){
 		if (this.isMoveValid()) {
 			
@@ -26,13 +22,6 @@ public class ChessMove extends PieceMove {
 		return this.current_board;
 	}
 	
-	public Point getMove_from() {
-		return move_from;
-	}
-
-	public Point getMove_to() {
-		return move_to;
-	}
 
 	public ChessBoard getCurrent_board() {
 		return current_board;
