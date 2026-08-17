@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import main.GameColour;
+import moveFunctions.CannotRecurse;
 import moveFunctions.OptionalCapture;
 import pieceMovement.MoveGenerator;
 

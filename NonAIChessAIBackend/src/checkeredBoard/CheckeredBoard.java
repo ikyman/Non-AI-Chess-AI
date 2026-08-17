@@ -54,7 +54,7 @@ public class CheckeredBoard {
 		this.y_size = y_size;
 	}
 	
-	Set<Point> dangerZone(GameColour colourInDanger){
+	public Set<Point> dangerZone(GameColour colourInDanger){
 		Set<Point> danger_coords = new HashSet<Point>();
 		for (GameColour player : GameColour.values() ) {
 			if (player == colourInDanger){
@@ -96,5 +96,13 @@ public class CheckeredBoard {
 			pieceScoreSum += cp.getValue().getScore();
 		}
 		return pieceScoreSum;
+	}
+
+	public void placePiece(GamePiece gamePiece, Point point) throws Exception {
+		if (this.BoardPeices.get(point) != null) {
+			throw new Exception("Peice Already Exists at given Point");
+		}
+		this.BoardPeices.put(point, gamePiece);
+		
 	}
 }
