@@ -1,4 +1,4 @@
-package pieceObjects;
+package pieceObjects.virginity;
 import java.awt.Point;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,12 +7,7 @@ import checkeredBoard.CheckeredBoard;
 import main.GameColour;
 import pieceMovement.MoveGenerator;
 import pieceMovement.PieceMove;
-
-enum VirginityStatus{
-	hasntMoved,
-	firstMove,
-	moved,
-}
+import pieceObjects.GamePiece;
 
 public abstract class VirginityPiece extends GamePiece{
 	private VirginityStatus virginity;
@@ -20,14 +15,6 @@ public abstract class VirginityPiece extends GamePiece{
 	public VirginityPiece(GameColour teamColour, int pieceScore) {
 		super(teamColour, pieceScore);
 		this.virginity = VirginityStatus.hasntMoved;
-	}
-
-	public Set<PieceMove> getMoves(Point piece_location, CheckeredBoard current_board){
-		Set<PieceMove> available_moves = new HashSet<PieceMove>();
-		for (MoveGenerator mg: pieceMoves) {
-			available_moves.addAll(mg.MoveGenerate(piece_location, current_board, null));
-		} 
-		return available_moves;
 	}
 	
 	protected void addMoveGenerator(MoveGenerator mg){

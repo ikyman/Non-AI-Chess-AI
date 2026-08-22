@@ -1,5 +1,6 @@
 package pieceObjects;
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,9 +14,24 @@ public abstract class GamePiece {
 	protected Set<MoveGenerator> pieceMoves;
 	protected int pieceScore;
 	
+	protected static final Set<Point> diagonals = new HashSet<>(Arrays.asList(
+			new Point(1,1),
+			new Point(1,-1),
+			new Point(-1,1),
+			new Point(-1,-1)
+	)); 
+	
+	protected static final Set<Point> straights = new HashSet<>(Arrays.asList(
+			new Point(0,1),
+			new Point(0,-1),
+			new Point(1,0),
+			new Point(-1,0)
+	)); 
+	
 	protected GamePiece(GameColour teamColour, int pieceScore) {
 		this.teamColour = teamColour;
 		this.pieceScore = pieceScore;
+		this.pieceMoves = new HashSet<MoveGenerator>();
 	}
 
 	public GameColour getTeamColour() {
