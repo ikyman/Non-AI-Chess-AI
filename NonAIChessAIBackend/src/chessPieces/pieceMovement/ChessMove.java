@@ -6,10 +6,7 @@ import checkeredBoard.ChessBoard;
 import moveFunctions.moveBehavior;
 
 public class ChessMove extends PieceMove {
-	private Point move_from;
-	private Point move_to;
 	private ChessBoard current_board;
-	private moveBehavior move_effect;
 	
 	public ChessMove(Point move_from, Point move_to, ChessBoard current_board, moveBehavior move_effect) {
 		super(move_from, move_to, current_board, move_effect);

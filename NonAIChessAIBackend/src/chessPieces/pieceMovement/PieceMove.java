@@ -7,10 +7,12 @@ import checkeredBoard.CheckeredBoard;
 import moveFunctions.moveBehavior;
 
 public class PieceMove {
-	private Point move_from;
-	private Point move_to;
+	protected Point move_from;
+	protected Point move_to;
 	private CheckeredBoard current_board;
-	private moveBehavior move_effect;
+	protected moveBehavior move_effect;
+	
+	private CaptureList captures;
 	
 	public PieceMove(Point move_from, Point move_to, CheckeredBoard current_board, moveBehavior move_effect) {
 		this.move_from = move_from;
@@ -60,5 +62,9 @@ public class PieceMove {
 	@Override
 	public int hashCode() {
 		return this.move_from.hashCode() + this.move_to.hashCode();
+	}
+
+	public CaptureList getCaptures() {
+		return this.captures;
 	}
 }
