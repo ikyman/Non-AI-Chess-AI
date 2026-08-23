@@ -28,7 +28,7 @@ public class MoveGenerator {
 		HashSet<PieceMove> available_moves= new HashSet<PieceMove>();
 		
 		for (Point step: this.steps) {
-			Point new_loc = PointAddition.addPoints( piece_location,  step);
+			Point new_loc = PointArithmetic.addPoints( piece_location,  step);
 			if (last_point.isPresent() && new_loc == last_point.get() ) {
 				continue;
 			}

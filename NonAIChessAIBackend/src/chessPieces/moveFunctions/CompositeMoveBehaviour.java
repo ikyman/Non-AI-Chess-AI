@@ -30,7 +30,9 @@ public class CompositeMoveBehaviour implements moveBehavior {
 
 	@Override
 	public void moveEffect(PieceMove proposedMove) {
-		// TODO Auto-generated method stub
+		for (moveBehavior mb: moveBehaviors) {
+			mb.moveEffect(proposedMove);
+		}
 		
 	}
 }
