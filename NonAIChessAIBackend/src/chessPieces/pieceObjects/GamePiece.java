@@ -14,6 +14,8 @@ public abstract class GamePiece {
 	protected Set<MoveGenerator> pieceMoves;
 	protected int pieceScore;
 	
+	private VirginityStatus virginity;
+	
 	protected static final Set<Point> diagonals = new HashSet<>(Arrays.asList(
 			new Point(1,1),
 			new Point(1,-1),
@@ -32,6 +34,7 @@ public abstract class GamePiece {
 		this.teamColour = teamColour;
 		this.pieceScore = pieceScore;
 		this.pieceMoves = new HashSet<MoveGenerator>();
+		this.virginity = VirginityStatus.hasntMoved;
 	}
 
 	public GameColour getTeamColour() {
@@ -51,5 +54,9 @@ public abstract class GamePiece {
 	
 	protected void addMoveGenerator(MoveGenerator mg){
 		pieceMoves.add(mg);
+	}
+	
+	public VirginityStatus getVirginity() {
+		return virginity;
 	}
 }

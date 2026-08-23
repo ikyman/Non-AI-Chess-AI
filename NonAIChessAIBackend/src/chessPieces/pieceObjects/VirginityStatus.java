@@ -1,4 +1,4 @@
-package pieceObjects.virginity;
+package pieceObjects;
 
 public enum VirginityStatus{
 	hasntMoved,
