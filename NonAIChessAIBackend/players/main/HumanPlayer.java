@@ -12,7 +12,7 @@ import pieceMovement.PieceMove;
 public class HumanPlayer implements Player{
 	private GameColour Colour;
 	
-	public HumanPlayer(GameColour Colour, CheckeredBoard starting_board ) {
+	public HumanPlayer(GameColour Colour ) {
 		this.Colour = Colour;
 	}
 	

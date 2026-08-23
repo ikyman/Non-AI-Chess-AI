@@ -2,17 +2,20 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import checkeredBoard.ChessBoard;
+import pieceMovement.PieceMove;
 
 public class PlayChessGame {
 	public static void main(String[] args) {
 		ChessBoard chessboard = new ChessBoard();
 		// Fill out starting locations.
 
-		Player playerWhite;
-		Player playerBlack;
+		Player playerWhite = new HumanPlayer(GameColour.WHITE);
+		Player playerBlack = new ComputerPlayerMixedPriorityQuenue(GameColour.BLACK, chessboard);
 		
 		List<Player> players = new ArrayList<Player>( Arrays.asList(playerWhite, playerBlack) );
 		int currentPlayer = players.size();
@@ -24,8 +27,20 @@ public class PlayChessGame {
 			if (currentPlayer >= players.size()) {
 				currentPlayer = 0;
 			}
-			PieceMove proposedMove = players.get(currentPlayer).pickMove(chessboard); //, null);
 			
+			boolean chosen_valid_move = false;
+			Set<PieceMove> rejectedMoves = new HashSet<PieceMove>();
+			PieceMove proposedMove;
+
+			while (! chosen_valid_move) {
+				proposedMove = players.get(currentPlayer).pickMove(chessboard, rejectedMoves);
+				
+				if (proposedMove.isMoveValid()){
+					chosen_valid_move = true;
+				}else {
+					rejectedMoves.add(proposedMove);
+				}
+			}	
 			
 			gameWon = true;
 		}
