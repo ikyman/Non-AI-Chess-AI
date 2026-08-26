@@ -3,6 +3,7 @@ package moveFunctions;
 import java.util.HashSet;
 import java.util.Set;
 
+import pieceMovement.CaptureList;
 import pieceMovement.PieceMove;
 
 public class CompositeMoveBehaviour implements moveBehavior {
@@ -24,8 +25,12 @@ public class CompositeMoveBehaviour implements moveBehavior {
 			move_valid = move_valid && mb.isMoveValid(proposedMove);
 		}
 		
-		// TODO Auto-generated method stub
 		return move_valid;
+	}
+	
+	@Override
+	public CaptureList getCaptures(PieceMove proposedMove) {
+		throw new RuntimeException("Todo! Get Capture ");
 	}
 
 	@Override

@@ -1,10 +1,13 @@
 package pieceMovement;
 
 import java.awt.Point;
+import java.util.Map;
 import java.util.Set;
 
+import moveFunctions.capturing.OnCapture;
+
 public class CaptureList {
-	private Set<Point> optionalCaptures;
+	private Map<Point, OnCapture> captures;
 	private Set<Point> mandatoryCaptures;
 	
 	public void addOptionalCapture(Point p){
