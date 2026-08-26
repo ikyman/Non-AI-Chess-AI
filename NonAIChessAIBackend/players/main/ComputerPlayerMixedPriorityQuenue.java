@@ -27,10 +27,16 @@ public class ComputerPlayerMixedPriorityQuenue implements Player{
 		
 		PriorityQueue<PieceMove> moveRanker = new PriorityQueue<PieceMove>(new AIMoveComparator(current_board));
 		for (PieceMove pmove : possible_moves ) {
-			break;
+			throw new RuntimeException("Comparitor function for Priority Queneu DNE, as no way to summarize Value of kills");
 		}
-		throw new RuntimeException("Not Yet Implemented@!");
-		//return possible_moves.iterator().next(); Temporary random move, in case Everything non-non-AI-related is done, and I want something, at least something to poke around with.
+		
+		while (moveRanker.size() >= 1) {
+			PieceMove chosenMove = moveRanker.poll(); // ! If cannot move, then that'll be a stalemate
+			if (!RejectedMoves.contains(chosenMove)) {
+				return chosenMove;
+			}
+		}
+		return null;
 	}
 	
 	private double getZoneValue(Point ZoneCoords, CheckeredBoard current_board) {
