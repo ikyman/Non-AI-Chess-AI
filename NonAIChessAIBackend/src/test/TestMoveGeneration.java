@@ -47,10 +47,10 @@ public class TestMoveGeneration {
 	void testRecursiveMoves() {
 		CheckeredBoard board = new CheckeredBoard(5,2);
 		GamePiece castle = new Rook();
-        Set<ChessMove> all_moves = castle.getMoves(new Point(2,2), board);
+        Set<PieceMove> all_moves = castle.getMoves(new Point(2,2), board);
         assertEquals(all_moves.size(),5);
         Set<Point> move_locations = new HashSet<Point>();
-        for (ChessMove cm: all_moves) {
+        for (PieceMove cm: all_moves) {
         	move_locations.add(cm.getMove_to());
         }
         assertTrue(move_locations.contains(new Point(5,2)));
