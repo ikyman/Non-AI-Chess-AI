@@ -84,6 +84,10 @@ public class CheckeredBoard {
 		return BoardPeices.get(coord);
 	}
 	
+	public boolean moveFitsGameRules(PieceMove proposed_move) {
+		return true;
+	}
+	
 	/* @Returns the sum of all the peice scores for every peice belonging to the player with color colour. 
 	 * 
 	 * */
