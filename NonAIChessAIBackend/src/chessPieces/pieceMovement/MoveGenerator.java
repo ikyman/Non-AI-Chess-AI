@@ -2,6 +2,7 @@ package pieceMovement;
 
 import java.awt.Point;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -10,12 +11,12 @@ import moveFunctions.moveBehavior;
 import moveFunctions.recurseIf;
 
 public class MoveGenerator {
-	private Set<Point> steps;
+	private Map<Point,CaptureList> moves_captures;
 	private moveBehavior mb;
 	private recurseIf ri;
 	
-	public MoveGenerator(Set<Point> steps, moveBehavior mb, recurseIf ri  ){
-		this.steps = steps;
+	public MoveGenerator(Map<Point,CaptureList> moves_captures, moveBehavior mb, recurseIf ri  ){
+		this.moves_captures = moves_captures;
 		this.mb = mb;
 		this.ri = ri;
 	}
@@ -27,12 +28,13 @@ public class MoveGenerator {
 	private Set<PieceMove> MoveGenerate(Point piece_location, CheckeredBoard current_board, Optional<Point> last_point, CaptureList capturesSoFar){
 		HashSet<PieceMove> available_moves= new HashSet<PieceMove>();
 		
-		for (Point step: this.steps) {
+		for (Point step: this.moves_captures.keySet()) {
 			Point new_loc = PointArithmetic.addPoints( piece_location,  step);
 			if (last_point.isPresent() && new_loc == last_point.get() ) {
 				continue;
 			}
-			PieceMove newMove = new PieceMove(piece_location, new_loc, current_board, this.mb);
+			CaptureList move_captures = capturesSoFar.concat(moves_captures.get(step));
+			PieceMove newMove = new PieceMove(piece_location, new_loc, current_board, this.mb, move_captures);
 			if (! this.mb.isMoveValid(newMove) ) {
 				continue;
 			}
