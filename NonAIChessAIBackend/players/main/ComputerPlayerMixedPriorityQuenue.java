@@ -27,7 +27,7 @@ public class ComputerPlayerMixedPriorityQuenue implements Player{
 		
 		PriorityQueue<PieceMove> moveRanker = new PriorityQueue<PieceMove>(new AIMoveComparator(current_board));
 		for (PieceMove pmove : possible_moves ) {
-			throw new RuntimeException("Comparitor function for Priority Queneu DNE, as no way to summarize Value of kills");
+			moveRanker.add(pmove);
 		}
 		
 		while (moveRanker.size() >= 1) {
@@ -90,11 +90,20 @@ public class ComputerPlayerMixedPriorityQuenue implements Player{
 			double o1PositionScore = getZoneValue(o1.getMove_to(), this.board) - getZoneValue(o1.getMove_from(), this.board);
 			double o2PositionScore = getZoneValue(o2.getMove_to(), this.board) - getZoneValue(o2.getMove_from(), this.board);
 			
-			throw new RuntimeException("Obtaining Kill scores not yet Implemented. ");
-			double o1KillScore = 0;
-			double o2KillScore = 0;
+			double o1KillScore = getCaptureValue(o1);
+			double o2KillScore = getCaptureValue(o2);
 
 			return (int) ( (o2PositionScore + o2KillScore) - (o1PositionScore + o1KillScore  ));
+		}
+		
+		private double getCaptureValue(PieceMove pm) {
+			Set<Point> pm_captures = pm.getCaptures().captures.keySet();
+			double capture_value = 0;
+			for (Point pm_capture : pm_captures) {
+				capture_value += this.board.getPieceAt(pm_capture).getScore();
+			}
+			
+			return capture_value;			
 		}
 		
 	}
