@@ -22,7 +22,7 @@ public class MoveGenerator {
 	}
 	
 	public Set<PieceMove> MoveGenerate(Point piece_location, CheckeredBoard current_board){
-		return MoveGenerate(piece_location, current_board, null, new CaptureList());
+		return MoveGenerate(piece_location, current_board, null, CaptureList.EmptyCaptureList());
 	}
 	
 	private Set<PieceMove> MoveGenerate(Point piece_location, CheckeredBoard current_board, Optional<Point> last_point, CaptureList capturesSoFar){

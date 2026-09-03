@@ -25,7 +25,7 @@ public class CaptureList {
 	        if (result.containsKey(entry.getKey())) {
 	            throw new IllegalArgumentException(
 	                "Duplicate Point found while concatenating CaptureLists. " +
-	                "Future improvement: consider storing a List<OnCapture> per Point."
+	                "Future improvement: consider storing a Set<OnCapture> per Point."
 	            );
 	        }
 

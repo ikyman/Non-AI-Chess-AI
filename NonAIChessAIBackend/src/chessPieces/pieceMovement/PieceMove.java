@@ -14,11 +14,12 @@ public class PieceMove {
 	
 	private CaptureList captures;
 	
-	public PieceMove(Point move_from, Point move_to, CheckeredBoard current_board, moveBehavior move_effect) {
+	public PieceMove(Point move_from, Point move_to, CheckeredBoard current_board, moveBehavior move_effect, CaptureList captures) {
 		this.move_from = move_from;
 		this.move_to = move_to;
 		this.current_board = current_board;
 		this.move_effect = move_effect;
+		this.captures = captures;
 	}
 	
 	public boolean isMoveValid() {

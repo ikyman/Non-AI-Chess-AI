@@ -53,6 +53,13 @@ public class CheckeredBoard {
 		this.x_size = x_size;
 		this.y_size = y_size;
 	}
+
+	@Override
+	public CheckeredBoard clone() {
+		CheckeredBoard copy = new CheckeredBoard(this.x_size, this.y_size);
+		copy.BoardPeices = new HashMap<Point, GamePiece>(this.BoardPeices);
+		return copy;
+	}
 	
 	public Set<Point> dangerZone(GameColour colourInDanger){
 		Set<Point> danger_coords = new HashSet<Point>();
@@ -80,8 +87,12 @@ public class CheckeredBoard {
 		return all_moves;
 	}
 
-	public GamePiece PieceAt(Point coord) {
+	public GamePiece getPieceAt(Point coord) {
 		return BoardPeices.get(coord);
+	}
+	
+	public void clearPoint(Point p) {
+		BoardPeices.put(p, null);		
 	}
 	
 	public boolean moveFitsGameRules(PieceMove proposed_move) {
@@ -104,7 +115,7 @@ public class CheckeredBoard {
 
 	public void placePiece(GamePiece gamePiece, Point point) throws Exception {
 		if (this.BoardPeices.get(point) != null) {
-			throw new Exception("Peice Already Exists at given Point");
+			throw new Exception("Piece Already Exists at given Point");
 		}
 		this.BoardPeices.put(point, gamePiece);
 		

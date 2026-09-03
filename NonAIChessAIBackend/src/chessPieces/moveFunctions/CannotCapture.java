@@ -6,9 +6,16 @@ public class CannotCapture implements moveBehavior {
 	public boolean isMoveValid(PieceMove proposedMove) {
 		return (proposedMove.getCurrent_board().PieceAt(proposedMove.getMove_to()) == null);
 	}
+	
+	@Override
+	public void addCaptures(PieceMove proposedMove) {
+		return;	
+	}
 
 	@Override
 	public void moveEffect(PieceMove proposedMove) {
 		return;
 	}
+
+
 }
