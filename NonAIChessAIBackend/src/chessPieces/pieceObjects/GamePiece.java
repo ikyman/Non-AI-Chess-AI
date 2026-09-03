@@ -16,20 +16,6 @@ public abstract class GamePiece {
 	
 	private VirginityStatus virginity;
 	
-	protected static final Set<Point> diagonals = new HashSet<>(Arrays.asList(
-			new Point(1,1),
-			new Point(1,-1),
-			new Point(-1,1),
-			new Point(-1,-1)
-	)); 
-	
-	protected static final Set<Point> straights = new HashSet<>(Arrays.asList(
-			new Point(0,1),
-			new Point(0,-1),
-			new Point(1,0),
-			new Point(-1,0)
-	)); 
-	
 	protected GamePiece(GameColour teamColour, int pieceScore) {
 		this.teamColour = teamColour;
 		this.pieceScore = pieceScore;
