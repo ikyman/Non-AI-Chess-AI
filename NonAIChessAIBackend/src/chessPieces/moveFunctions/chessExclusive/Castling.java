@@ -16,7 +16,7 @@ public class Castling implements moveFunctions.moveBehavior {
 	@Override
 	public boolean isMoveValid(PieceMove proposedMove) {
 		CheckeredBoard board = proposedMove.getCurrent_board();
-		GamePiece castle_guest = board.PieceAt(proposedMove.getMove_from());
+		GamePiece castle_guest = board.getPieceAt(proposedMove.getMove_from());
 		GameColour player_colour = castle_guest.getTeamColour();
 		
 		if (castle_guest.getVirginity() != VirginityStatus.hasntMoved) {
@@ -48,8 +48,21 @@ public class Castling implements moveFunctions.moveBehavior {
 	}
 
 	@Override
-	public void moveEffect(PieceMove proposedMove) {
-		throw new RuntimeException("Didn't work a lick on this; Prefered to write the fucntions as to minimize repeating myself.");
+	public void moveEffect(PieceMove proposedMove){
+		CheckeredBoard board = proposedMove.getCurrent_board();
+		Point castle_location = getCastlingCastle(proposedMove);
+		
+		GamePiece castled_castle = board.getPieceAt(castle_location);
+		
+		Point step = getDirection(proposedMove);
+		Point new_castle_location = PointArithmetic.addPoints(proposedMove.getMove_from(), step); 
+		
+		board.clearPoint(castle_location);
+		try {
+			board.placePiece(castled_castle, new_castle_location);
+		}catch (Exception e){
+			throw new RuntimeException("Translated Checked->Unchecked Exception. This exception should only be thrown if isMoveValid is wrongly implemented!");
+		}
 	}
 	
 	/* Returns a point with maximum x and y 1 describing the direction of the castle.
@@ -66,7 +79,7 @@ public class Castling implements moveFunctions.moveBehavior {
 	// Returns the location of the Rook that can be used for such castling
 	private Point getCastlingCastle(PieceMove proposedMove) {
 		CheckeredBoard board = proposedMove.getCurrent_board();
-		GamePiece castle_guest = board.PieceAt(proposedMove.getMove_from());
+		GamePiece castle_guest = board.getPieceAt(proposedMove.getMove_from());
 		GameColour player_colour = castle_guest.getTeamColour();
 
 		Point step = getDirection(proposedMove);	
@@ -75,7 +88,7 @@ public class Castling implements moveFunctions.moveBehavior {
 		// What's preventing K R ? ==> ? R K
 		// A More important question: What's preventing me from not caring?
 		while (board.InBounds(safetyCheckPosition)) {
-			GamePiece c_piece = board.PieceAt(safetyCheckPosition); 
+			GamePiece c_piece = board.getPieceAt(safetyCheckPosition); 
 			if (c_piece != null) { 
 				if( c_piece.getTeamColour() == player_colour && c_piece instanceof Rook && c_piece.getVirginity() == VirginityStatus.hasntMoved ) {
 					return safetyCheckPosition;
@@ -88,5 +101,4 @@ public class Castling implements moveFunctions.moveBehavior {
 		return null;
 
 	}
-
 }
