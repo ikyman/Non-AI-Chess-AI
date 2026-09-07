@@ -22,21 +22,18 @@ public class ComputerPlayerMixedPriorityQuenue implements Player{
 		this.origOpponentPointValue = this.getTotalEnemyScore(starting_board);	
 	}
 	
-	public PieceMove pickMove(CheckeredBoard current_board, Set<PieceMove> RejectedMoves){
+	public PieceMove pickMove(CheckeredBoard current_board){
 		Set<PieceMove> possible_moves = current_board.getMovesForColour(this.Colour);
 		
 		PriorityQueue<PieceMove> moveRanker = new PriorityQueue<PieceMove>(new AIMoveComparator(current_board));
 		for (PieceMove pmove : possible_moves ) {
-			moveRanker.add(pmove);
-		}
-		
-		while (moveRanker.size() >= 1) {
-			PieceMove chosenMove = moveRanker.poll(); // ! If cannot move, then that'll be a stalemate
-			if (!RejectedMoves.contains(chosenMove)) {
-				return chosenMove;
+			if (pmove.isMoveValid()) {
+				moveRanker.add(pmove);
 			}
 		}
-		return null;
+		
+		PieceMove chosenMove = moveRanker.poll(); // ! If cannot move, then that'll be a stalemate, and would return null
+		return chosenMove;
 	}
 	
 	private double getZoneValue(Point ZoneCoords, CheckeredBoard current_board) {

@@ -6,5 +6,5 @@ import checkeredBoard.CheckeredBoard;
 import pieceMovement.PieceMove;
 
 public interface Player {
-	public PieceMove pickMove(CheckeredBoard current_board, Set<PieceMove> RejectedMoves);
+	public PieceMove pickMove(CheckeredBoard current_board);
 }

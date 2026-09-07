@@ -27,22 +27,12 @@ public class PlayChessGame {
 			if (currentPlayer >= players.size()) {
 				currentPlayer = 0;
 			}
-			
-			boolean chosen_valid_move = false;
-			Set<PieceMove> rejectedMoves = new HashSet<PieceMove>();
 			PieceMove proposedMove;
 
-			while (! chosen_valid_move) {
-				proposedMove = players.get(currentPlayer).pickMove(chessboard, rejectedMoves);
-				
-				if (proposedMove.isMoveValid()){
-					chosen_valid_move = true;
-				}else {
-					rejectedMoves.add(proposedMove);
-				}
-			}	
+			proposedMove = players.get(currentPlayer).pickMove(chessboard);
 			
 			gameWon = true;
+			throw new RuntimeException("Winning and losing. But what about a stalemate?");
 		}
 	}
 }
