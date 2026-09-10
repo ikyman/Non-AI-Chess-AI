@@ -8,6 +8,7 @@ import java.util.Set;
 import main.GameColour;
 import moveFunctions.CannotRecurse;
 import moveFunctions.OptionalCapture;
+import pieceMovement.KnownMovements;
 import pieceMovement.MoveGenerator;
 
 public class Knight extends GamePiece {
@@ -26,7 +27,7 @@ public class Knight extends GamePiece {
 	
 	public Knight(GameColour teamColour){
 		super(teamColour, KNIGHT_VALUE);
-		this.addMoveGenerator(new MoveGenerator(list_of_Ls, new OptionalCapture(), new CannotRecurse()));
+		this.addMoveGenerator(new MoveGenerator(KnownMovements.KillCaptureWhereMove(list_of_Ls), new OptionalCapture(), new CannotRecurse()));
 		
 	}
 }
