@@ -2,15 +2,17 @@ package main;
 
 import java.awt.Point;
 import java.util.HashSet;
-import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Set;
 
 import checkeredBoard.CheckeredBoard;
-import checkeredBoard.ChessBoard;
 import pieceMovement.PieceMove;
-import pieceObjects.GamePiece;
 
+/* I don't remember a single commit on for HumanPlayer that wasn't me tasking AI with something.
+ * I am forced to dub this class as "AI Written". AI Written with oversight, but AI written nonetheless.
+ * 
+ * Ironic
+ */
 public class HumanPlayer implements Player{
 	private GameColour Colour;
 	
@@ -24,41 +26,46 @@ public class HumanPlayer implements Player{
 			// Using the board inbounds instead of querying the size directly? The 26 magic number? Both are problematic decisions.
 		}
 
-	    Scanner scanner = new Scanner(System.in);
+		Set<PieceMove> legalMoves = new HashSet<PieceMove>();
+		for (PieceMove possible_move : current_board.getMovesForColour(this.Colour)) {
+			if (possible_move.isMoveValid()) {
+				legalMoves.add(possible_move);
+			}
+		}
+		if (legalMoves.isEmpty()) {
+			return null;
+		}
 
-	    System.out.print("Enter move (Source Destination): ");
-	    String input = scanner.nextLine();
-	    
-	    scanner.close();
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			System.out.print("Enter move (Source Destination): ");
+			String input = scanner.nextLine();
+			String[] parts = input.trim().split("\\s+");
 
-	    String[] parts = input.trim().split("\\s+");
+			if (parts.length != 2) {
+				System.out.println("Invalid input. Expected: Source Destination");
+				continue;
+			}
 
-	    if (parts.length != 2) {
-	        throw new IllegalArgumentException(
-	            "Invalid input. Expected: Piece Source Destination"
-	        );
-	    }
+			Point move_from;
+			Point move_to;
+			try {
+				move_from = chessNotationToPoint(parts[0]);
+				move_to = chessNotationToPoint(parts[1]);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+				continue;
+			}
 
-	    String source = parts[0];
-	    String destination = parts[1];
+			for (PieceMove possible_move : legalMoves) {
+				if (possible_move.getMove_from().equals(move_from)
+						&& possible_move.getMove_to().equals(move_to)) {
+					return possible_move;
+				}
+			}
 
-	    Point move_from = chessNotationToPoint(source);
-	    Point move_to = chessNotationToPoint(destination);
-	    
-	    GamePiece moved_piece = current_board.getPieceAt(move_from);
-	    
-	    Set<PieceMove> possible_moves = moved_piece.getMoves(move_from, current_board);
-	    
-	    for ( PieceMove possible_move : possible_moves) {
-	    	if (possible_move.getMove_to() == move_to && possible_move.isMoveValid()){
-	    		return possible_move;
-	    	}
-	    }
-	    
-	    return null;
-	    
-	    throw new RuntimeException("... Not ideal. It looks like the 'Null' return value means different info for humans & priority Quenue. Priority Quenue = no more moves, stalemate me."
-	    		+ "For Humans, it means the dunderhead input an illegitimate move.");
+			System.out.println("That is not a legal move. Try again.");
+		}
 	}
 	
 	
