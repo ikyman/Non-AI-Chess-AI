@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import checkeredBoard.CheckeredBoard;
 import main.GameColour;
-import pieceMovement.ChessMove;
 import pieceMovement.PieceMove;
 import pieceObjects.Knight;
+import pieceObjects.Rook;
 import pieceObjects.GamePiece;
 
 public class TestMoveGeneration {
@@ -46,7 +46,7 @@ public class TestMoveGeneration {
 	@Test
 	void testRecursiveMoves() {
 		CheckeredBoard board = new CheckeredBoard(5,2);
-		GamePiece castle = new Rook();
+		GamePiece castle = new Rook(GameColour.WHITE);
         Set<PieceMove> all_moves = castle.getMoves(new Point(2,2), board);
         assertEquals(all_moves.size(),5);
         Set<Point> move_locations = new HashSet<Point>();

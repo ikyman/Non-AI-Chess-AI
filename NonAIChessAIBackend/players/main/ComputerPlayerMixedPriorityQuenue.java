@@ -52,6 +52,9 @@ public class ComputerPlayerMixedPriorityQuenue implements Player{
 			 */
 			Set<Double> kingDistances = new HashSet<Double>();
 			for (GameColour col: GameColour.values() ) {
+				if (col == this.Colour) {
+					continue;
+				}
 				Point EnemyKingLocation = ( (ChessBoard)current_board).getKingLocation(col);
 				 double kingDistanceFraction = ( 2* HalfBoardDiagonal- EnemyKingLocation.distance(ZoneCoords)) / ( 2*HalfBoardDiagonal);
 				 kingDistances.add(kingDistanceFraction);

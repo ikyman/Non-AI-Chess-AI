@@ -7,10 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 
-import checkeredBoard.ChessBoard;
 import checkeredBoard.CheckeredBoard;
 import main.GameColour;
 import pieceObjects.GamePiece;
