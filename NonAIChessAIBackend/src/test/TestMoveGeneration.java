@@ -25,14 +25,15 @@ public class TestMoveGeneration {
         CheckeredBoard board = new CheckeredBoard(3);
         GamePiece stuckKnight = new Knight(GameColour.WHITE);
         Set<PieceMove> all_moves = stuckKnight.getMoves(new Point(2,2), board);
-        assertEquals(all_moves.size(),0);
+        assertEquals(0, all_moves.size());
 	}
 	@Test
-	void testMoves() {
+	void testMoves() throws Exception {
 		CheckeredBoard board = new CheckeredBoard(3);
 		GamePiece knight_2_moves = new Knight(GameColour.WHITE);
+		board.placePiece(knight_2_moves, new Point(1,1));
         Set<PieceMove> all_moves = knight_2_moves.getMoves(new Point(1,1), board);
-        assertEquals(all_moves.size(),2);
+        assertEquals(2, all_moves.size());
         Set<Point> move_locations = new HashSet<Point>();
         for (PieceMove cm: all_moves) {
         	move_locations.add(cm.getMove_to());

@@ -53,13 +53,6 @@ public class CheckeredBoard {
 		this.x_size = x_size;
 		this.y_size = y_size;
 	}
-
-	@Override
-	public CheckeredBoard clone() {
-		CheckeredBoard copy = new CheckeredBoard(this.x_size, this.y_size);
-		copy.BoardPeices = new HashMap<Point, GamePiece>(this.BoardPeices);
-		return copy;
-	}
 	
 	public Set<Point> dangerZone(GameColour colourInDanger){
 		Set<Point> danger_coords = new HashSet<Point>();
@@ -99,7 +92,7 @@ public class CheckeredBoard {
 		return true;
 	}
 	
-	/* @Returns the sum of all the peice scores for every peice belonging to the player with color colour. 
+	/* @Returns the sum of all the piece scores for every piece belonging to the player with color colour. 
 	 * 
 	 * */
 	public int PlayersPieceScore(GameColour colour) {
@@ -119,5 +112,12 @@ public class CheckeredBoard {
 		}
 		this.BoardPeices.put(point, gamePiece);
 		
+	}
+	
+	@Override
+	public CheckeredBoard clone() {
+		CheckeredBoard copy = new CheckeredBoard(this.x_size, this.y_size);
+		copy.BoardPeices = new HashMap<Point, GamePiece>(this.BoardPeices);
+		return copy;
 	}
 }

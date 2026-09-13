@@ -28,10 +28,6 @@ public class CompositeMoveBehaviour implements moveBehavior {
 		return move_valid;
 	}
 	
-	@Override
-	public CaptureList getCaptures(PieceMove proposedMove) {
-		throw new RuntimeException("Todo! Get Capture ");
-	}
 
 	@Override
 	public void moveEffect(PieceMove proposedMove) {
