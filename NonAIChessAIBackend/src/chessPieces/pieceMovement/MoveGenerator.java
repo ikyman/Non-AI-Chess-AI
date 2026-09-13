@@ -35,7 +35,7 @@ public class MoveGenerator {
 			}
 			CaptureList move_captures = capturesSoFar.concat(moves_captures.get(step));
 			PieceMove newMove = new PieceMove(piece_location, new_loc, current_board, this.mb, move_captures);
-			if (! this.mb.isMoveValid(newMove) ) {
+			if (! this.mb.isMoveValid(newMove) || !current_board.InBounds(newMove.move_to)) {
 				continue;
 			}
 
