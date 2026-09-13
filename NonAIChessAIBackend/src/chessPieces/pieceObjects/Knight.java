@@ -15,14 +15,14 @@ public class Knight extends GamePiece {
 	static int KNIGHT_VALUE = 3;
 
 	static final Set<Point> list_of_Ls = new HashSet<>(Arrays.asList(
-			new Point(2,3),
-			new Point(3,2),
-			new Point(-2,3),
-			new Point(-3,2),
-			new Point(2,-3),
-			new Point(3,-2),
-			new Point(-2,-3),
-			new Point(-3,-2)
+			new Point(1,2),
+			new Point(2,1),
+			new Point(-1,2),
+			new Point(-2,1),
+			new Point(1,-2),
+			new Point(2,-1),
+			new Point(-1,-2),
+			new Point(-2,-1)
 			)); 
 	
 	public Knight(GameColour teamColour){
