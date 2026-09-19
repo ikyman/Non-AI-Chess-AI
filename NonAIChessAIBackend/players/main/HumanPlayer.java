@@ -53,6 +53,7 @@ public class HumanPlayer implements Player{
 				move_from = chessNotationToPoint(parts[0]);
 				move_to = chessNotationToPoint(parts[1]);
 			} catch (IllegalArgumentException e) {
+				scanner.close();
 				System.out.println(e.getMessage());
 				continue;
 			}
@@ -60,6 +61,7 @@ public class HumanPlayer implements Player{
 			for (PieceMove possible_move : legalMoves) {
 				if (possible_move.getMove_from().equals(move_from)
 						&& possible_move.getMove_to().equals(move_to)) {
+					scanner.close();
 					return possible_move;
 				}
 			}

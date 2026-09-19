@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Set;
-
 import checkeredBoard.CheckeredBoard;
 import pieceMovement.PieceMove;
 

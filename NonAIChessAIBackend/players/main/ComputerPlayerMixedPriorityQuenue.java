@@ -45,11 +45,7 @@ public class ComputerPlayerMixedPriorityQuenue implements Player{
 		
 		if (current_board instanceof ChessBoard) {
 			double scorePercentRemaining = (this.getTotalEnemyScore(current_board))/this.origOpponentPointValue;
-			
-			/* Currently, the Computer player doesn't know which colour the enemy king is. Use the average of king location distances.
-			 * Should work for a Computer player playing against 1 opponent. 
-			 * Liable to get confused if there's more than one king. I do not plan to implement 3-player chess, so it shouldn't be a problem.
-			 */
+
 			Set<Double> kingDistances = new HashSet<Double>();
 			for (GameColour col: GameColour.values() ) {
 				if (col == this.Colour) {
