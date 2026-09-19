@@ -1,6 +1,5 @@
 package moveFunctions;
 
-import pieceMovement.CaptureList;
 import pieceMovement.PieceMove;
 import pieceObjects.GamePiece;
 

@@ -3,7 +3,6 @@ package moveFunctions;
 import java.util.HashSet;
 import java.util.Set;
 
-import pieceMovement.CaptureList;
 import pieceMovement.PieceMove;
 
 public class CompositeMoveBehaviour implements moveBehavior {

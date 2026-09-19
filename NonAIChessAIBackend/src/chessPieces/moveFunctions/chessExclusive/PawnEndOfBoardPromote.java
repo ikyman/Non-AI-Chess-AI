@@ -5,6 +5,7 @@ import java.awt.Point;
 import main.GameColour;
 import moveFunctions.moveBehavior;
 import pieceMovement.PieceMove;
+import pieceObjects.Queen;
 
 public class PawnEndOfBoardPromote implements moveBehavior{
 
