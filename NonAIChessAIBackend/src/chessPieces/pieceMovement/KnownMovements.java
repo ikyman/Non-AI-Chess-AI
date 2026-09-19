@@ -11,13 +11,15 @@ import moveFunctions.capturing.KillOnCapture;
 import moveFunctions.capturing.OnCapture;
 
 public class KnownMovements {
-	public static final Set<Point> diagonals = new HashSet<>(Arrays.asList(
-			new Point(1,1),
+	public static final Set<Point> bend = new HashSet<>(Arrays.asList(
 			new Point(1,-1),
-			new Point(-1,1),
-			new Point(-1,-1)
+			new Point(-1,1)
 	)); 
 	
+	public static final Set<Point> bend_sinister = new HashSet<>(Arrays.asList(
+			new Point(1,1),
+			new Point(-1,-1)
+	)); 
 	public static final Set<Point> verticals = new HashSet<>(Arrays.asList(
 			new Point(0,1),
 			new Point(0,-1)
