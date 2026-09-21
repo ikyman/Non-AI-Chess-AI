@@ -34,4 +34,9 @@ public class CaptureList {
 
 	    return new CaptureList(result);
 	}
+	
+	@Override
+	public CaptureList clone() {
+		return new CaptureList(this.captures);
+	}
 }

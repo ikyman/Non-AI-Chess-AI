@@ -54,6 +54,10 @@ public class PieceMove {
 		return current_board;
 	}
 	
+	public CaptureList getCaptures() {
+		return this.captures;
+	}
+	
 	@Override
 	public boolean equals(Object objOther) {
 		if (!(objOther instanceof PieceMove)){
@@ -73,8 +77,15 @@ public class PieceMove {
 	public int hashCode() {
 		return this.move_from.hashCode() + this.move_to.hashCode();
 	}
-
-	public CaptureList getCaptures() {
-		return this.captures;
+	
+	@Override
+	public PieceMove clone() {
+	    return new PieceMove(
+	        new Point(this.move_from),
+	        new Point(this.move_to),
+	        this.current_board.clone(),
+	        this.move_effect,
+	        this.captures.clone()
+	    );
 	}
 }
