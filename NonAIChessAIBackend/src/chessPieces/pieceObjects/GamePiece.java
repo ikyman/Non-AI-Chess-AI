@@ -1,6 +1,5 @@
 package pieceObjects;
 import java.awt.Point;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,5 +43,12 @@ public abstract class GamePiece {
 	
 	public VirginityStatus getVirginity() {
 		return virginity;
+	}
+	
+	public VirginityStatus DemoteVirginity() {
+		// Better than "Deflower", which I considered!
+		// The issue with "Deflower" is this: Where's the flowers? 
+		this.virginity = VirginityStatus.moved;
+		return this.getVirginity();
 	}
 }

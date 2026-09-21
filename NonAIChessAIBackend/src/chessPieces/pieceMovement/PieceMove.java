@@ -1,10 +1,10 @@
 package pieceMovement;
 
 import java.awt.Point;
-import java.util.Set;
 
 import checkeredBoard.CheckeredBoard;
 import moveFunctions.moveBehavior;
+import pieceObjects.GamePiece;
 
 public class PieceMove {
 	protected Point move_from;
@@ -26,9 +26,18 @@ public class PieceMove {
 		return this.move_effect.isMoveValid(this);
 	}
 	
-	public CheckeredBoard makeMove(){
+	public CheckeredBoard makeMove() throws Exception{ 
 		if (this.isMoveValid()) {
-			
+			for (Point capture_point: this.getCaptures().captures.keySet()) {
+				this.getCaptures().captures.get(capture_point).captureEffect(current_board, capture_point);				
+			}
+			GamePiece moved_piece = this.current_board.getPieceAt(move_from);
+			moved_piece.DemoteVirginity();
+			this.current_board.clearPoint(this.move_from);
+			this.current_board.placePiece(moved_piece, this.move_to);
+			this.move_effect.moveEffect(this);
+
+
 		}
 		return this.current_board;
 	}
