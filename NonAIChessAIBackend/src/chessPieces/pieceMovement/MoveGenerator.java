@@ -33,6 +33,7 @@ public class MoveGenerator {
 			if (last_point.isPresent() && new_loc == last_point.get() ) {
 				continue;
 			}
+			// Issue: currently naively adding the "from 0-0" Directions. No! No relatavism! We know the current point where the peice is now! 
 			CaptureList move_captures = capturesSoFar.concat(moves_captures.get(step));
 			PieceMove newMove = new PieceMove(piece_location, new_loc, current_board, this.mb, move_captures);
 			if (! this.mb.isMoveValid(newMove) || !current_board.InBounds(newMove.move_to)) {
