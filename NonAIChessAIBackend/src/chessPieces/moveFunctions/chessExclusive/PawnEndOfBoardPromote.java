@@ -21,7 +21,11 @@ public class PawnEndOfBoardPromote implements moveBehavior{
 			GameColour promotion_team = proposedMove.getCurrent_board().getPieceAt(promotionSpot).getTeamColour();
 			proposedMove.getCurrent_board().clearPoint(promotionSpot);
 			Queen promotedQueen = new Queen(promotion_team);
-			proposedMove.getCurrent_board().placePiece(promotedQueen, promotionSpot);
+			try {
+				proposedMove.getCurrent_board().placePiece(promotedQueen, promotionSpot);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
