@@ -21,7 +21,7 @@ public class HumanPlayer implements Player{
 	}
 	
 	public PieceMove pickMove(CheckeredBoard current_board) {
-		if (!current_board.InBounds(new Point(26, 0))) {
+		if (current_board.InBounds(new Point(26, 1))) {
 			throw new RuntimeException("Chess notation impossible because Board Width exceeds number of letters in alphabet.");
 			// Using the board inbounds instead of querying the size directly? The 26 magic number? Both are problematic decisions.
 		}
@@ -83,12 +83,12 @@ public class HumanPlayer implements Player{
 	    char column = notation.charAt(0);
 
 	    // A-Z -> 0-25
-	    int x = column - 'A';
+	    int x = column - 'A' + 1;
 
 	    // Everything after the letter is the row number
 	    int y;
 	    try {
-	        y = Integer.parseInt(notation.substring(1)) - 1;
+	        y = Integer.parseInt(notation.substring(1));
 	    } catch (NumberFormatException e) {
 	        throw new IllegalArgumentException("Invalid square: " + notation);
 	    }
