@@ -1,7 +1,7 @@
 package checkeredBoard;
 
 import java.awt.Point;
-import java.util.ArrayList;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -16,8 +16,8 @@ public class CheckeredBoard {
 	protected int x_size;
 	protected int y_size;
 	
-	private Map<Point, GamePiece> BoardPeices = new HashMap<Point, GamePiece>();
-	
+	private Map<Point, GamePiece> boardPeices = new HashMap<Point, GamePiece>();
+		
 	public CheckeredBoard() {
 		createCheckeredBoard(8,8);
 	}
@@ -70,7 +70,7 @@ public class CheckeredBoard {
 		
 	public Set<PieceMove> getMovesForColour(GameColour colour){
 		Set<PieceMove> all_moves = new HashSet<>();
-		for (Map.Entry<Point, GamePiece> cp:  BoardPeices.entrySet()) {
+		for (Map.Entry<Point, GamePiece> cp:  boardPeices.entrySet()) {
 			if (cp.getValue().getTeamColour() != colour) {
 				continue;
 			}
@@ -81,11 +81,11 @@ public class CheckeredBoard {
 	}
 
 	public GamePiece getPieceAt(Point coord) {
-		return BoardPeices.get(coord);
+		return boardPeices.get(coord);
 	}
 	
 	public void clearPoint(Point p) {
-		BoardPeices.put(p, null);		
+		boardPeices.remove(p);		
 	}
 	
 	public boolean moveFitsGameRules(PieceMove proposed_move) {
@@ -97,7 +97,7 @@ public class CheckeredBoard {
 	 * */
 	public int PlayersPieceScore(GameColour colour) {
 		int pieceScoreSum = 0;
-		for (Map.Entry<Point, GamePiece> cp:  BoardPeices.entrySet()) {
+		for (Map.Entry<Point, GamePiece> cp:  boardPeices.entrySet()) {
 			if (cp.getValue().getTeamColour() != colour) {
 				continue;
 			}
@@ -107,17 +107,34 @@ public class CheckeredBoard {
 	}
 
 	public void placePiece(GamePiece gamePiece, Point point) throws Exception {
-		if (this.BoardPeices.get(point) != null) {
+		if (this.boardPeices.get(point) != null) {
 			throw new Exception("Piece Already Exists at given Point");
 		}
-		this.BoardPeices.put(point, gamePiece);
+		this.boardPeices.put(point, gamePiece);
 		
+	}
+	
+	public int get_y_dim() {
+		return y_size;
+	}
+	
+	public void printPieceList(PrintStream out) {
+	    for (Map.Entry<Point, GamePiece> entry : boardPeices.entrySet()) {
+	        Point point = entry.getKey();
+	        GamePiece piece = entry.getValue();
+
+	        out.printf("(%d, %d): %s %s%n",
+	                point.x,
+	                point.y,
+	                piece.getTeamColour(),
+	                piece.getClass().getSimpleName());
+	    }
 	}
 	
 	@Override
 	public CheckeredBoard clone() {
 		CheckeredBoard copy = new CheckeredBoard(this.x_size, this.y_size);
-		copy.BoardPeices = new HashMap<Point, GamePiece>(this.BoardPeices);
+		copy.boardPeices = new HashMap<Point, GamePiece>(this.boardPeices);
 		return copy;
 	}
 }
