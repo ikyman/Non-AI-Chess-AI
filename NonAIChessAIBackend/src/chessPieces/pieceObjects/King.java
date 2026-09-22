@@ -17,7 +17,8 @@ public class King extends GamePiece {
 
 	public King(GameColour teamColour){
 		super(teamColour, KING_VALUE);
-		this.addMoveGenerator(new MoveGenerator(KnownMovements.KillCaptureWhereMove(KnownMovements.diagonals), new OptionalCapture(), new CannotRecurse()));
+		this.addMoveGenerator(new MoveGenerator(KnownMovements.KillCaptureWhereMove(KnownMovements.bend), new OptionalCapture(), new CannotRecurse()));
+		this.addMoveGenerator(new MoveGenerator(KnownMovements.KillCaptureWhereMove(KnownMovements.bend_sinister), new OptionalCapture(), new CannotRecurse()));
 		this.addMoveGenerator(new MoveGenerator(KnownMovements.KillCaptureWhereMove(KnownMovements.horizontals), new OptionalCapture(), new CannotRecurse()));
 		this.addMoveGenerator(new MoveGenerator(KnownMovements.KillCaptureWhereMove(KnownMovements.verticals), new OptionalCapture(), new CannotRecurse()));
 		

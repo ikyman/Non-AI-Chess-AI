@@ -2,7 +2,6 @@ package moveFunctions;
 
 import java.awt.Point;
 
-import pieceMovement.CaptureList;
 import pieceMovement.PieceMove;
 
 public class RecurseIfNoCapture implements recurseIf {

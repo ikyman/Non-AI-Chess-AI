@@ -49,7 +49,7 @@ public class TestMoveGeneration {
 		CheckeredBoard board = new CheckeredBoard(5,2);
 		GamePiece castle = new Rook(GameColour.WHITE);
         Set<PieceMove> all_moves = castle.getMoves(new Point(2,2), board);
-        assertEquals(all_moves.size(),5);
+        assertEquals(5, all_moves.size());
         Set<Point> move_locations = new HashSet<Point>();
         for (PieceMove cm: all_moves) {
         	move_locations.add(cm.getMove_to());
